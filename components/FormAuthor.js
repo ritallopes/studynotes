@@ -1,3 +1,5 @@
+import Container from './container'
+
 /*
   This example requires Tailwind CSS v2.0+ 
   
@@ -16,14 +18,14 @@
 */
 export default function FormAuthor() {
     return (
-      <>
+      <Container>
         <div>
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">Profile</h3>
+                <h3 className="text-lg font-medium leading-6 text-gray-900">Autor</h3>
                 <p className="mt-1 text-sm text-gray-600">
-                  This information will be displayed publicly so be careful what you share.
+                 Preencha as informações
                 </p>
               </div>
             </div>
@@ -34,18 +36,31 @@ export default function FormAuthor() {
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
                         <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
-                          Website
+                          Nome
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
-                          <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                            http://
-                          </span>
                           <input
                             type="text"
                             name="company-website"
                             id="company-website"
                             className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                            placeholder="www.example.com"
+                            placeholder="Digite seu nome"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-6">
+                      <div className="col-span-3 sm:col-span-2">
+                        <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+                          Email
+                        </label>
+                        <div className="mt-1 flex rounded-md shadow-sm">
+                          <input
+                            type="email"
+                            name="company-website"
+                            id="company-website"
+                            className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                            placeholder="Digite seu email"
                           />
                         </div>
                       </div>
@@ -53,7 +68,7 @@ export default function FormAuthor() {
   
                     <div>
                       <label htmlFor="about" className="block text-sm font-medium text-gray-700">
-                        About
+                        Descrição
                       </label>
                       <div className="mt-1">
                         <textarea
@@ -61,17 +76,14 @@ export default function FormAuthor() {
                           name="about"
                           rows={3}
                           className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                          placeholder="you@example.com"
+                          placeholder="Digite informações sobre vocÊ"
                           defaultValue={''}
                         />
                       </div>
-                      <p className="mt-2 text-sm text-gray-500">
-                        Brief description for your profile. URLs are hyperlinked.
-                      </p>
                     </div>
   
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">Photo</label>
+                      <label className="block text-sm font-medium text-gray-700">Imagem</label>
                       <div className="mt-1 flex items-center">
                         <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
                           <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -82,13 +94,13 @@ export default function FormAuthor() {
                           type="button"
                           className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                          Change
+                          Mudar
                         </button>
                       </div>
                     </div>
   
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">Cover photo</label>
+                      <label className="block text-sm font-medium text-gray-700">Foto de capa</label>
                       <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div className="space-y-1 text-center">
                           <svg
@@ -110,10 +122,10 @@ export default function FormAuthor() {
                               htmlFor="file-upload"
                               className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                             >
-                              <span>Upload a file</span>
+                              <span>Upload a imagem</span>
                               <input id="file-upload" name="file-upload" type="file" className="sr-only" />
                             </label>
-                            <p className="pl-1">or drag and drop</p>
+                            <p className="pl-1">ou arraste e solte</p>
                           </div>
                           <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         </div>
@@ -121,19 +133,20 @@ export default function FormAuthor() {
                     </div>
                   </div>
                   <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button
-                      type="submit"
+                    <a href="/">                    <button
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Save
+                      Salvar
                     </button>
+                    </a>
                   </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-  
+        
+      {/*
         <div className="hidden sm:block" aria-hidden="true">
           <div className="py-5">
             <div className="border-t border-gray-200" />
@@ -402,7 +415,8 @@ export default function FormAuthor() {
             </div>
           </div>
         </div>
-      </>
+        */}
+      </ Container>
     )
   }
   
