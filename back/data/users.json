@@ -1,8 +1,14 @@
 [
     {
-       "name": "Smith",
-       "email": "email@gmail.com",
-       "description": "description",
-       "password": "mypassword"
+        "name": "Smith",
+        "email": "email@gmail.com",
+        "description": "description",
+        "password": "mypassword"
+    },
+    {
+        "name": "asfasf",
+        "email": "fsfs",
+        "description": "fsdf",
+        "password": "sfsdf"
     }
-  ]
+]

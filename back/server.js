@@ -21,48 +21,67 @@ app.post("/posts", (req, res) => {
 
 app.post("/author", async (req, res) => {
   const body = req.body;
-  console.log(body);
+  writeFileJson(body);
   return res.json(body);
 });
 
-const readFileJson = () => {
+app.post("/login", async (req, res) => {
+  let a = await auth(req.body.email, req.body.password);
+  console.log(a);
+  return res.status(a ? 200 : 400).send(a);
+});
+
+const auth = async (email, pass) => {
+  const users = readFileJson();
+  await users.forEach((user, i) => {
+    if (user.email == email && user.password == pass) {
+      console.log("Usuario autenticado");
+      return true;
+    }
+    if (i == users.length()) {
+      return false;
+    }
+  });
+};
+
+const readFileJson = async () => {
   // Read users.json file
+  let users = [];
   fs.readFile("./data/users.json", function (err, data) {
     // Check for errors
     if (err) throw err;
 
     // Converting to JSON
-    const users = JSON.parse(data);
-    users.forEach((user) => {
-      console.log(user);
-    });
-    console.log(users); // Print users
+    users = JSON.parse(data);
+    //console.log(users); // Print users
   });
+  return users;
 };
 
 const writeFileJson = async (user) => {
   // Read users.json file
-  const newUsers = [];
-
+  let newUsers = [];
   await fs.readFile("./data/users.json", function (err, data) {
     // Check for errors
     if (err) throw err;
 
     // Converting to JSON
+    if (!data) return;
     const users = JSON.parse(data);
     newUsers = [...users, { ...user }];
+    fs.writeFile("./data/users.json", JSON.stringify(newUsers), (err) => {
+      if (err) {
+        console.error(err);
+        return err;
+      }
+    });
   });
-  await fs.writeFile("./data/users.json", newUsers.toString(), (err) => {
-    if (err) {
-      console.error(err);
-      return err;
-    }
-  });
+
   return user;
 };
 
 let file = function (p) {
-  const content = `---\ntitle: ${p.title}\ntag: ${p.tag}\nexcerpt: ${p.excerpt}\ncoverImage: ${p.coverImage}\ndate:  ${p.date}\nauthor:\n  name: ${p.author}\n  picture: ${p.pictures}\nogImage: ${p.ogImage}\n---\n\n${p.content}`;
+  const content = `---\ntitle: '${p.title}'\ntag: '${p.tag}'\nexcerpt: '${p.excerpt}'\ncoverImage: '${p.coverImage}'\ndate:  '${p.date}'\nauthor:\n  name: '${p.name}'\n  picture: '${p.picture}'\nogImage: url'${p.url}'\n---\n\n${p.content}`;
   const nameFile = p.title
     .toLowerCase()
     .replace(/ +/g, "-")
